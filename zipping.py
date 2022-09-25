@@ -23,7 +23,7 @@ class MyClass:
         return fin_mex
 
     def ending(self):
-        print(f"Auction wins {self.fin_mex}!")
+        print(f"Auction{self.fin_mex}")
     #looping with input condition
 
 
