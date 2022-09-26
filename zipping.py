@@ -1,3 +1,6 @@
+from operator import countOf
+
+
 names = []
 values = []
 
@@ -17,10 +20,19 @@ class MyClass:
     #putting zipped stuff into dictionary
     def zipped(self):
         result_c= dict(self.c)
+        self.result_c = result_c
         print(result_c)
         fin_mex = max(result_c, key=result_c.get)
         self.fin_mex = fin_mex
         return fin_mex
+
+    def tie(self):
+        count_of_values = countOf(self.result_c.values(), self.result_c[self.fin_mex])
+        return count_of_values
+        # if a > 1:
+            # print(a, "There is a tie!")
+           
+
 
     def ending(self):
         print(f"{self.fin_mex}")
@@ -34,10 +46,17 @@ while not shouldEnd:
     
     s = MyClass(name = a, value = b)
     s.zipped()
-    
+    s.tie() 
+
     restart = input("Want to restart? If you want type Y, if not type N.")
     if restart == "n":
-        s.ending()
+        if s.tie() > 1:
+            print('there is a tie!')
+            names.clear(), values.clear()
+            shouldEnd = False
+        else:
+            s.ending()
+
+            shouldEnd = True
+            print("goodbye")
         
-        shouldEnd = True
-        print("goodbye")
