@@ -26,11 +26,15 @@ class Game():
     def croupier(self): 
          
         croupier_card = random.sample(cards, 2)
-        print(croupier_card)
+        print(f"[{croupier_card[0]}, x ]")
         croupier = 0
         shouldEnd = True
         while shouldEnd:
-            if croupier >= 21:
+            if croupier == 21:
+                print("You win!")
+                break
+            elif croupier > 21:
+                print("Too much!")
                 break
             
             croupier = croupier + croupier_card[0] + croupier_card[1]
@@ -41,8 +45,10 @@ class Game():
             while croupier < 21:
                 draw = input("Do you want draw  next card or deal(n)? Y or N?")
                 if draw == "y":
-                    croupier_card = random.choice(cards)
-                    a = croupier_card
+                    new_croupier_card = random.choice(cards)
+                    croupier_card.append(new_croupier_card)
+                    print(croupier_card)
+                    a = new_croupier_card
                     croupier = croupier + a
                     
                 elif draw == "n":
